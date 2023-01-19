@@ -1,0 +1,32 @@
+{% extends 'meet/base.html' %}
+{% block content %}
+
+
+        {% for profile in profiles %}
+            
+         
+              <article class="media content-section">
+                      <div class="media-body">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="{% url 'profile-detail' profile.id %}">{{ profile.name }}</a>
+                          <small class="text-muted" >{{ profile.date_posted|date:"F d, Y" }}</small>
+                        </div>
+                        <h2><a class="article-title" >{{ profile.name }}</a></h2>
+                        <p class="article-content">{{ profile.likes }}</p>
+                      {% if profile.name != user.username %}
+                        <form action="req_to_chat" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name= "profile_name" id = "chat" value ={{profile.name}}>
+                        <!-- <label for ='chat'>SELECT TO CHAT</label> -->
+                        <input type="submit" value="REQUEST TO CHAT">
+                      </form>  
+                      {% endif %}     
+                      </div>
+                    </article>
+                   
+                 
+              
+         
+
+        {% endfor %}
+{% endblock content %}

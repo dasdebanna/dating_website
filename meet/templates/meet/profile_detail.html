@@ -1,0 +1,32 @@
+{% extends 'meet/base.html' %}
+{% block content %}
+
+  
+
+    <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                <a class="mr-2" href="#">{{ object.name }}</a>
+                <small class="text-muted" >{{ object.date_posted|date:"F d, Y" }}</small>
+                {% if object.username == user %}
+                    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'profile-update' object.id %}">UPDATE</a>
+                {% endif %}
+                {% if object.username != user %}
+                <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'profile-report'  %}">REPORT</a>
+                {% endif %}
+                </div>
+                <h2><a class="article-title" href="#">{{ object.name }}</a></h2>
+                <p class="article-content">{{ object.likes }}</p>
+        {% if object.username != user %}
+        <form action="block_user" method="post">
+            {% csrf_token %}
+              <input type="radio" name= "profile_name" id = "chat" value ={{profile.name}}>
+              <label for ='chat'>SELECT TO BLOCK</label>
+            </div>
+          </article>
+          <input type="submit" value="CLICK TO BLOCK">
+        </form>
+        {% endif %}
+
+        
+{% endblock content %}

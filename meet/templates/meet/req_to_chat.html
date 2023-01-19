@@ -1,0 +1,29 @@
+{% extends 'meet/base.html' %}
+{% block content %}
+  
+    {% for names in name %}
+        <!-- <h1>{{ names.requestor }}</h1>
+        <h1>{{ user.username }} </h1>
+        <h1>{{ names.acceptor }} end </h1>
+      -->
+       
+        {% if names.requestor.name == user.username  %} 
+           
+            <h1>You requested to chat with {{ names.acceptor.name }}</h1>
+        
+        {% endif %}
+
+        <div>
+            {% if names.acceptor.name == user.username  %} 
+                
+                    <h1>{{ names.requestor.name }} have requested to chat with you</h1>
+                    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'accepted' names.id %}">ACCEPT</a>
+                    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="#">DECLINE</a>
+                
+            {% endif %}
+        </div>
+        
+    {% endfor %}
+
+
+{% endblock content %}

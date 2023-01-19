@@ -1,0 +1,36 @@
+{% extends 'meet/base.html' %}
+{% block content %}
+
+  
+
+    <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                
+              
+                {% for blocks in blocked %}
+                   
+             
+                    {% if blocks.blocked_by == user.get_username %}
+                    
+                        <h2><a class="article-title" >YOU BLOCKED {{ blocks.person_blocked }}</a></h2>
+                        <form action="unblock" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name= "profile_name" id = "chat" value ={{blocks.person_blocked}}>
+                            <!-- <label for ='chat'>SELECT TO UNBLOCK</label> -->
+                             
+                          </div>
+                        </article>
+                        <input type="submit" value="UNBLOCK">
+                      </form>
+                   
+                    
+                    
+                    {% endif %}
+                
+                {% endfor %}
+                </div>
+    
+
+        
+{% endblock content %}
