@@ -16,7 +16,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your Account has bee created. you can now log in')
-            return redirect('https://dating4website.azurewebsites.net/profile/new/')
+            return redirect('http://localhost:8000/profile/new/')
 
     else:
         form = UserRegisterForm()
